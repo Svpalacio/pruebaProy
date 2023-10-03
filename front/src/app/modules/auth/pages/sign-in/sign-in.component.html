@@ -1,0 +1,64 @@
+<main class="row">
+  <form [formGroup]="registerForm" (submit)="onSubmit()">
+    <section class="inputs-container">
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+          [class.is-invalid]="
+            registerForm.get('email')?.errors &&
+            registerForm.get('email')?.touched
+          "
+        />
+        <label for="email">Email</label>
+        <span
+          class="invalid-feedback x-invisible"
+          [class.x-visible]="
+            registerForm.get('email')?.errors &&
+            registerForm.get('email')?.touched
+          "
+        >
+          Email invalido
+        </span>
+      </div>
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          formControlName="password"
+          [class.is-invalid]="
+            registerForm.get('password')?.errors &&
+            registerForm.get('password')?.touched
+          "
+        />
+        <label for="password">Password</label>
+        <span
+          class="invalid-feedback x-invisible"
+          [class.visible]="
+            registerForm.get('password')?.errors &&
+            registerForm.get('password')?.touched
+          "
+        >
+          Minimo 14 caractere(s) y maximo 128 caractere(s)
+        </span>
+      </div>
+    </section>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Logearse
+    </button>
+    <div class="bg-warning"> <!-- // mensaje resultado del logueo -->
+      {{ mensaje }}
+    </div>
+  </form>
+  <div id="extra-text">
+    <span>Aun no tenes cuenta? <a routerLink="/auth/register">Login </a></span>
+    <span><a href="#">Recuperar Password</a></span>
+  </div>
+</main>
